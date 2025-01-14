@@ -1,3 +1,6 @@
+import org.devops.LbAnalisissonarqube
+import org.devops.LbBuildArtefacto
+
 def call() {
     pipeline {
         agent any
