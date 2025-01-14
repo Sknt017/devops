@@ -8,14 +8,14 @@ def call() {
             stage('SonarQube Analysis') {
                 steps {
                     script {
-                        org.devops.LbAnalisissonarqube.analizarCodigo()
+                        org.devops.LbAnalisissonarqube.analizarCodigo(this)
                     }
                 }
             }
             stage('Build Artifact') {
                 steps {
                     script {
-                        org.devops.LbBuildArtefacto.construirArtefacto()
+                        org.devops.LbBuildArtefacto.construirArtefacto(this)
                     }
                 }
             }
