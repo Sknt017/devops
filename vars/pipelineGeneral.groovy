@@ -1,5 +1,5 @@
-@Library('lb_buildartefacto')
-@Library('lb_analisissonarqube')
+@Library('lb_buildartefacto')_
+@Library('lb_analisissonarqube')_
 def pipelineGeneral() {
     pipeline {
         agent any
