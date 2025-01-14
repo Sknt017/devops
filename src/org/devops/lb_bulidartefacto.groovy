@@ -1,9 +1,7 @@
 package org.devops
-def clone(){
-    git branch: "${env.nameBranch}", url: "${env.UrlGitHub}"
-}
-def install(){
-    //sh 'npm install'
-    sh 'mvn clean'
-    sh 'mvn compile'
+
+class MiFuncion {
+    static void saludar(String name) {
+        echo "Hola, ${name} desde MiFuncion."
+    }
 }
