@@ -1,3 +1,21 @@
-def call(String name = 'Mundo') {
-    org.devops.MiFuncion.saludar(name)
+def call() {
+    pipeline {
+        agent any
+        stages {
+            stage('SonarQube Analysis') {
+                steps {
+                    script {
+                        org.devops.LbAnalisissonarqube.analizarCodigo()
+                    }
+                }
+            }
+            stage('Build Artifact') {
+                steps {
+                    script {
+                        org.devops.LbBuildArtefacto.construirArtefacto()
+                    }
+                }
+            }
+        }
+    }
 }

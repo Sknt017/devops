@@ -1,7 +1,8 @@
 package org.devops
 
-class MiFuncion {
-    static void saludar(String name) {
-        echo "Hola, ${name} desde MiFuncion."
+class LbAnalisissonarqube {
+    static void analizarCodigo() {
+        echo 'Analizando código con SonarQube...'
+        // Lógica de análisis de SonarQube aquí
     }
 }

@@ -1,7 +1,8 @@
 package org.devops
 
-class MiFuncion {
-    static void saludar(String name) {
-        echo "Hola, ${name} desde MiFuncion."
+class LbBuildArtefacto {
+    static void construirArtefacto() {
+        echo 'Construyendo artefacto...'
+        // Lógica de construcción del artefacto aquí
     }
 }
