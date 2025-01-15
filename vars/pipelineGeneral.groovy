@@ -13,10 +13,12 @@ def call() {
         }
         stage('Build') {
             steps {
+                script{
                 //sh 'mvn clean'
                 build.construirArtefacto(this,'mvn clean')
                 //sh 'mvn compile'
                 build.construirArtefacto(this,'mvn compile')
+                }
             }
         }
         stage('Test') {
