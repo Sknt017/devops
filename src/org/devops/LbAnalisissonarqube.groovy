@@ -2,7 +2,7 @@ package org.devops
 
 class LbAnalisissonarqube {
     static void analizarCodigo(Map parametros = [:]) {
-        step.sh "echo 'Analizando código con SonarQube...'"
+        steps.sh "echo 'Analizando código con SonarQube...'"
         def scannerHome = tool 'SonarqubeScanner'
         withSonarQubeEnv('ServerSonarqube') {
                         sh "${scannerHome}/bin/sonar-scanner \
