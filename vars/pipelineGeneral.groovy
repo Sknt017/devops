@@ -23,13 +23,15 @@ def call() {
         }
         stage('Test') {
             steps {
+                script {
                 build.construirArtefacto(this, 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report')
-            }
+            }}
         }
         stage('Package') {
             steps {
+                script {
                 build.construirArtefacto(this, 'mvn package')
-                
+                }
             }
             post{
                 always{
