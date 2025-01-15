@@ -3,9 +3,8 @@ package org.devops
 class LbAnalisissonarqube {
     static void analizarCodigo(steps, Map parametros = [:]) {
         steps.sh 'echo Analizando código con SonarQube...'
-        def scannerHome = tool 'SonarqubeScanner'
         withSonarQubeEnv('ServerSonarqube') {
-                        sh "${scannerHome}/bin/sonar-scanner \
+                        steps.sh "${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=analisisTermometro \
                             -Dsonar.projectName=analisisTermometro \
                             -Dsonar.sources=src/main/java \
