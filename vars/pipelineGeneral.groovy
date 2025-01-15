@@ -1,7 +1,8 @@
-//import org.devops.LbAnalisissonarqube
-//import org.devops.LbBuildArtefacto
+import org.devops.LbAnalisissonarqube
+import org.devops.LbBuildArtefacto
 
 def call() {
+    def build = new org.devops.LbBuildArtefacto()
     pipeline {
     agent any
     stages {
@@ -12,8 +13,10 @@ def call() {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean'
-                sh 'mvn compile'
+                //sh 'mvn clean'
+                build.construirArtefacto(this,'mvn clean')
+                //sh 'mvn compile'
+                build.construirArtefacto(this,'mvn compile')
             }
         }
         stage('Test') {
