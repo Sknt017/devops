@@ -3,6 +3,7 @@ import org.devops.LbBuildArtefacto
 
 def call() {
     def build = new org.devops.LbBuildArtefacto()
+    def sonar = new org.devops.LbAnalisissonarqube()
     pipeline {
     agent any
     stages {
@@ -25,7 +26,8 @@ def call() {
             steps {
                 script {
                 build.construirArtefacto(this, 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report')
-            }}
+                }
+            }
         }
         stage('Package') {
             steps {
@@ -45,15 +47,16 @@ def call() {
         stage('Code Analisys') {
             steps {
                 script {
-                    def scannerHome = tool 'SonarqubeScanner'
-                    withSonarQubeEnv('ServerSonarqube') {
-                        sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=analisisTermometro \
-                            -Dsonar.projectName=analisisTermometro \
-                            -Dsonar.sources=src/main/java \
-                            -Dsonar.java.binaries=target/classes \
-                            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
-                    }
+                    sonar.analizarCodigo()
+                    // def scannerHome = tool 'SonarqubeScanner'
+                    // withSonarQubeEnv('ServerSonarqube') {
+                    //     sh "${scannerHome}/bin/sonar-scanner \
+                    //         -Dsonar.projectKey=analisisTermometro \
+                    //         -Dsonar.projectName=analisisTermometro \
+                    //         -Dsonar.sources=src/main/java \
+                    //         -Dsonar.java.binaries=target/classes \
+                    //         -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
+                    // }
                 }
             }
         }
