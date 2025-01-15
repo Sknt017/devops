@@ -47,7 +47,7 @@ def call() {
         stage('Code Analisys') {
             steps {
                 script {
-                    sonar.analizarCodigo()
+                    sonar.analizarCodigo(this)
                     // def scannerHome = tool 'SonarqubeScanner'
                     // withSonarQubeEnv('ServerSonarqube') {
                     //     sh "${scannerHome}/bin/sonar-scanner \
