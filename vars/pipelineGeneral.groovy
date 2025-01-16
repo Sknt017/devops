@@ -7,11 +7,6 @@ def call() {
     pipeline {
     agent any
     stages {
-        // stage('Checkout') {
-        //     steps {
-        //         git url: "${GIT_URL_1}"
-        //     }
-        // }
         stage('Build') {
             steps {
                 script{
