@@ -49,16 +49,8 @@ def call() {
                 script {
                     def scannerHome = tool 'SonarqubeScanner'
                     withSonarQubeEnv('ServerSonarqube') {
-                        sonar.analizarCodigo(this, sonarTool: scannerHome )
+                        sonar.analizarCodigo(sonarTool: scannerHome, this)
                     }
-                    // withSonarQubeEnv('ServerSonarqube') {
-                    //     sh "${scannerHome}/bin/sonar-scanner \
-                    //         -Dsonar.projectKey=analisisTermometro \
-                    //         -Dsonar.projectName=analisisTermometro \
-                    //         -Dsonar.sources=src/main/java \
-                    //         -Dsonar.java.binaries=target/classes \
-                    //         -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
-                    // }
                 }
             }
         }
