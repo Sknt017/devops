@@ -48,7 +48,9 @@ def call() {
             steps {
                 script {
                     def scannerHome = tool 'SonarqubeScanner'
-                    sonar.analizarCodigo(this)
+                    withSonarQubeEnv('ServerSonarqube') {
+                        sonar.analizarCodigo(this)
+                    }
                     // withSonarQubeEnv('ServerSonarqube') {
                     //     sh "${scannerHome}/bin/sonar-scanner \
                     //         -Dsonar.projectKey=analisisTermometro \
