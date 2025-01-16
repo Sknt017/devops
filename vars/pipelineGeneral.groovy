@@ -49,7 +49,7 @@ def call() {
                 script {
                     def scannerHome = tool 'SonarqubeScanner'
                     withSonarQubeEnv('ServerSonarqube') {
-                        sonar.analizarCodigo(this)
+                        sonar.analizarCodigo(this, sonarTool: scannerHome )
                     }
                     // withSonarQubeEnv('ServerSonarqube') {
                     //     sh "${scannerHome}/bin/sonar-scanner \
