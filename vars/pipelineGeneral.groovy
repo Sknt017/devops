@@ -9,30 +9,28 @@ def call() {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Sknt017/termometro.git'
+                git url: "${GIT_URL_1}"
             }
         }
         stage('Build') {
             steps {
                 script{
-                //sh 'mvn clean'
-                build.construirArtefacto(this,'mvn clean')
-                //sh 'mvn compile'
-                build.construirArtefacto(this,'mvn compile')
+                    build.construirArtefacto(this,'mvn clean')
+                    build.construirArtefacto(this,'mvn compile')
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                build.construirArtefacto(this, 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report')
+                    build.construirArtefacto(this, 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report')
                 }
             }
         }
         stage('Package') {
             steps {
                 script {
-                build.construirArtefacto(this, 'mvn package')
+                    build.construirArtefacto(this, 'mvn package')
                 }
             }
             post{
@@ -49,7 +47,6 @@ def call() {
                 script {
                     def scannerHome = tool 'SonarqubeScanner'
                     withSonarQubeEnv('ServerSonarqube') {
-                        //sonar.analizarCodigo(sonarTool: scannerHome, this)
                         sh sonar.analizarCodigo(sonarTool: scannerHome)
                     }
                 }
