@@ -49,7 +49,8 @@ def call() {
                 script {
                     def scannerHome = tool 'SonarqubeScanner'
                     withSonarQubeEnv('ServerSonarqube') {
-                        sonar.analizarCodigo(sonarTool: scannerHome, this)
+                        //sonar.analizarCodigo(sonarTool: scannerHome, this)
+                        sh sonar.analizarCodigo(sonarTool: scannerHome)
                     }
                 }
             }
