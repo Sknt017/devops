@@ -3,11 +3,11 @@ import org.devops.LbDeployDocker
 import org.devops.LbOWASP
 import org.devops.LbPublicarDockerHub
 def call(){
-pipeline {
     def build = new org.devops.LbBuildImagen()
     def publish = new org.devops.LbPublicarDockerHub()
     def deploy = new org.devops.LbDeployDocker()
     def OWASP = new org.devops.LbOWASP()
+    pipeline {    
     agent any    
     stages {
         stage('Checkout') {
