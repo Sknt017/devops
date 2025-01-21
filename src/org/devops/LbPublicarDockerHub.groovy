@@ -2,8 +2,8 @@ package org.devops
 
 class LbPublicarDockerHub{
     static void publicarImagen(steps, String DOCKERHUB_USER, String DOCKERHUB_PASS){
-        def DOCKERHUB_PASS = DOCKERHUB_PASS
-        def DOCKERHUB_USER = DOCKERHUB_USER
+        //def DOCKERHUB_PASS = DOCKERHUB_PASS
+        //def DOCKERHUB_USER = DOCKERHUB_USER
         def dockerHubUsername = 'davidruiz212'
         def dockerHubTokenCredentialId = 'tokendockerhub'
         def imageExists = steps.sh(script: "docker images -q ${dockerHubUsername}/termometro",returnStdout: true).trim()
