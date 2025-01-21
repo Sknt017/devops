@@ -11,7 +11,7 @@ class LbPublicarDockerHub{
         if(imageExists){
             steps.sh 'echo La imagen ${dockerHubUsername}/termometro ya existe, descartando...'
         }else{
-            withCredentials([usernamePassword(credentialsId: dockerHubTokenCredentialId, passwordVariable: 'DOCKERHUB_PASS', usernameVariable: 'DOCKERHUB_USER')]){
+            steps.withCredentials([usernamePassword(credentialsId: dockerHubTokenCredentialId, passwordVariable: 'DOCKERHUB_PASS', usernameVariable: 'DOCKERHUB_USER')]){
             steps.sh "docker login --username ${DOCKERHUB_USER} --password ${DOCKERHUB_PASS}"
         }   
         steps.sh "docker tag termometro ${dockerHubUsername}/termometro"
