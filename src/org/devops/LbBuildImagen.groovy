@@ -6,7 +6,7 @@ class LbBuildImagen {
         // Lógica de construcción del artefacto aquí
         def imageExists = steps.sh(script : "docker images -q termometro",returnStdout: true).trim()
         if (imageExists){
-            steps.echo "La imagen ya existe... descartando construccion..."
+            steps.sh "echo La imagen ya existe... descartando construccion..."
         }else{
             steps.sh 'docker build -t termometro -f Dockerfile .'
             }
