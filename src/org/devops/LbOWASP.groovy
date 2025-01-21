@@ -15,7 +15,7 @@ class LbOWASP {
         sh "docker rm ${zapContainerName} || true "
         sh "docker run -d --name ${zapContainerName} --network=${networkName} ${imageName}"
         def dockerHubUsername = 'davidruiz212'
-        def crudspringbootImageName = 'termometroAPI'
+        def crudspringbootImageName = 'termometro'
         def crudspringbootContainerName = 'termometro-container'
         sh "docker stop ${crudspringbootContainerName} || true"
         sh "docker rm ${crudspringbootContainerName} || true"

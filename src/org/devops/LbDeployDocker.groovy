@@ -3,7 +3,7 @@ package org.devops
 class LbDeployDocker{
     static void ejecutarContenedor(steps){
         def dockerHubUsername = 'davidruiz212'
-        def imageName = 'termometroAPI'
+        def imageName = 'termometro'
         def containerName = 'termometro-container'
         def containerExists = sh(script: "docker ps -a --filter name=${containerName} --format {{.Names}}",
         returnStdout: true).trim()
