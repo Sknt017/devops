@@ -1,6 +1,6 @@
 package org.devops
 
-class LbAnalisissonarqube {
+class LbOWASP {
     static String analizarProyecto(steps) {
         def networkName = 'jenkinsOwasp'
         def imageName = 'zaproxy/zap-stable'
