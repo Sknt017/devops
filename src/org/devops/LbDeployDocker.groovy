@@ -5,14 +5,14 @@ class LbDeployDocker{
         def dockerHubUsername = 'davidruiz212'
         def imageName = 'termometro'
         def containerName = 'termometro-container'
-        def containerExists = sh(script: "docker ps -a --filter name=${containerName} --format {{.Names}}",
+        def containerExists = steps.sh(script: "docker ps -a --filter name=${containerName} --format {{.Names}}",
         returnStdout: true).trim()
         if (containerExists){
-            echo "el contenedor ${containerName} ya existe. descartando..."
+            steps.sh "echo el contenedor ${containerName} ya existe. descartando..."
         } else {
-            sh "docker stop ${containerName} || true"
-            sh "docker rm ${containerName} || true"
-            sh "docker run -d -p 3000:8080 --name ${containerName} ${dockerHubUsername}/${imageName}"
+            steps.sh "docker stop ${containerName} || true"
+            steps.sh "docker rm ${containerName} || true"
+            steps.sh "docker run -d -p 3000:8080 --name ${containerName} ${dockerHubUsername}/${imageName}"
         }
     }
 }

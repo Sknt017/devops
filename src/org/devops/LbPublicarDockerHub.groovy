@@ -1,7 +1,9 @@
 package org.devops
 
 class LbPublicarDockerHub{
-    static void publicarImagen(steps){
+    static void publicarImagen(steps, String DOCKERHUB_USER, String DOCKERHUB_PASS){
+        def DOCKERHUB_PASS = DOCKERHUB_PASS
+        def DOCKERHUB_USER = DOCKERHUB_USER
         def dockerHubUsername = 'davidruiz212'
         def dockerHubTokenCredentialId = 'tokendockerhub'
         def imageExists = steps.sh(script: "docker images -q ${dockerHubUsername}/termometro",returnStdout: true).trim()
@@ -9,11 +11,11 @@ class LbPublicarDockerHub{
         if(imageExists){
             steps.sh 'echo La imagen ${dockerHubUsername}/termometro ya existe, descartando...'
         }else{
-            withCredentials([usernamePassword(credentialsId: dockerHubTokenCredentialId, passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]){
-            steps.sh "docker login --username ${env.DOCKERHUB_USERNAME} --password ${env.DOCKERHUB_PASSWORD}"
+            withCredentials([usernamePassword(credentialsId: dockerHubTokenCredentialId, passwordVariable: 'DOCKERHUB_PASS', usernameVariable: 'DOCKERHUB_USER')]){
+            steps.sh "docker login --username ${DOCKERHUB_USER} --password ${DOCKERHUB_PASS}"
         }   
-        sh "docker tag termometro ${dockerHubUsername}/termometro"
-        sh "docker push ${dockerHubUsername}/termometro"
+        steps.sh "docker tag termometro ${dockerHubUsername}/termometro"
+        steps.sh "docker push ${dockerHubUsername}/termometro"
         }
     }
 }

@@ -36,7 +36,7 @@ def call(){
             stage('Publish Image') {
                 steps {
                     script{
-                            publish.publicarImagen(this)
+                            publish.publicarImagen(this, env.DOCKERHUB_USERNAME, env.DOCKERHUB_PASSWORD)
                         }
                     }
 
