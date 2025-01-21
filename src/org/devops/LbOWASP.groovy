@@ -20,7 +20,7 @@ class LbAnalisissonarqube {
         sh "docker stop ${crudspringbootContainerName} || true"
         sh "docker rm ${crudspringbootContainerName} || true"
         sh "docker run -d --name ${crudspringbootContainerName} --network=${networkName} -p 3500:8080 --user root ${dockerHubUsername}/${crudspringbootImageName}"
-        def targetURL = "http://${env.iphost}:3500"
+        def targetURL = "http://${steps.env.iphost}:3500"
         sh "docker run --rm -v fullscancrudspringboot:/zap/wrk/:rw --user root --network=${networkName} -t $imageName zap-full-scan.py -t ${targetURL} -r fullScanReport.html -I"
         sh "docker stop ${zapContainerName}"
         sh "docker rm ${zapContainerName}"
