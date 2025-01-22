@@ -69,7 +69,7 @@ def call(){
             stage('OWASP Analisis') {
                 steps {
                     script {
-                        OWASP.analizarProyecto()
+                        OWASP.analizarProyecto(this)
                         // def networkName = 'jenkinsOwasp'
                         // def imageName = 'zaproxy/zap-stable'
                         // def zapContainerName = 'owaspimagen-container'
