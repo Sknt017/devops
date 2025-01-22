@@ -37,7 +37,7 @@ def call(){
                 steps {
                     script{
                         def dockerHubTokenCredentialId = 'tokendockerhub'
-                        withCredentials([usernamePassword(credentialsId: dockerHubTokenCredentialId, passwordVariable: 'DOCKERHUB_PASS', usernameVariable: 'DOCKERHUB_USER')]){
+                        withCredentials([usernamePassword(credentialsId: dockerHubTokenCredentialId, passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]){
                             sh "docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}"
                             publish.publicarImagen(this)
                         }
