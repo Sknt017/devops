@@ -2,10 +2,11 @@ package org.devops
 
 class LbOWASP {
     static String analizarProyecto(steps) {
+        //Descarga de OWASP ZAProxy
         def networkName = 'jenkinsOwasp'
         def imageName = 'zaproxy/zap-stable'
         def zapContainerName = 'owaspimagen-container'
-        def imageExists = steps.sh(script: "docker images -q $imageName",returnStdout: true).trim()
+        def imageExists = steps.sh(script: "docker images -q ${imageName}",returnStdout: true ).trim()
         if(imageExists.isEmpty()){
             steps.sh "docker pull $imageName"
         } else {
