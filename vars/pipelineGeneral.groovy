@@ -36,7 +36,12 @@ def call(){
             stage('Publish Image') {
                 steps {
                     script{
-                            publish.publicarImagen(this, env.DOCKERHUB_USERNAME, env.DOCKERHUB_PASSWORD)
+                        def dockerHubTokenCredentialId = 'tokendockerhub'
+                        withCredentials([usernamePassword(credentialsId: dockerHubTokenCredentialId, passwordVariable: 'DOCKERHUB_PASS', usernameVariable: 'DOCKERHUB_USER')]){
+                            sh "docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}"
+                            publish.publicarImagen(this)
+                        }
+                            
                         }
                     }
 
@@ -64,8 +69,7 @@ def call(){
             stage('OWASP Analisis') {
                 steps {
                     script {
-                            OWASP.analizarProyecto(this)
-
+                        OWASP.analizarProyecto()
                         // def networkName = 'jenkinsOwasp'
                         // def imageName = 'zaproxy/zap-stable'
                         // def zapContainerName = 'owaspimagen-container'
