@@ -22,7 +22,7 @@ class LbOWASP {
         def crudspringbootContainerNamePort = "3500"
         steps.sh "docker stop ${crudspringbootContainerName} || true"
         steps.sh "docker rm ${crudspringbootContainerName} || true"
-        steps.sh "docker run -d --name ${crudspringbootContainerName} --network=${networkName} -p ${crudspringbootContainerNamePort}:${crudspringbootContainerNamePort} --user root ${dockerHubUsername}/${crudspringbootImageName}"
+        steps.sh "docker run -d --name ${crudspringbootContainerName} --network=${networkName} -p ${crudspringbootContainerNamePort}:8080 --user root ${dockerHubUsername}/${crudspringbootImageName}"
         def targetURL = "http://${steps.env.iphost}:${crudspringbootContainerNamePort}"
         steps.sh "docker run -v fullscancrudspringboot:/zap/wrk/:rw --user root --name ${zapContainerName} --network=${networkName} -t $imageName zap-full-scan.py -t ${targetURL} -r fullScanReport.html -I"
         steps.sh "docker stop ${zapContainerName}"
