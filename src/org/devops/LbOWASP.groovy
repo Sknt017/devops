@@ -16,8 +16,8 @@ class LbOWASP {
         steps.sh "docker rm ${zapContainerName} || true "
         //steps.sh "docker run -d --name ${zapContainerName} --network=${networkName} ${imageName}"
         def dockerHubUsername = 'davidruiz212'
-        def crudspringbootImageName = 'termometro'
-        def crudspringbootContainerName = 'termometro-container'
+        def crudspringbootImageName = 'crudspringboot-buildimagen'
+        def crudspringbootContainerName = 'crudspringboot-buildimagen-container'
         //custom port config
         def crudspringbootContainerNamePort = "3500"
         steps.sh "docker stop ${crudspringbootContainerName} || true"
