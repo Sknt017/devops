@@ -19,7 +19,7 @@ class LbOWASP {
         def crudspringbootImageName = 'termometro'
         def crudspringbootContainerName = 'termometro-container'
         //custom port config
-        def crudspringbootContainerNamePort = "8081"
+        def crudspringbootContainerNamePort = "3500"
         steps.sh "docker stop ${crudspringbootContainerName} || true"
         steps.sh "docker rm ${crudspringbootContainerName} || true"
         steps.sh "docker run -d --name ${crudspringbootContainerName} --network=${networkName} -p ${crudspringbootContainerNamePort}:${crudspringbootContainerNamePort} --user root ${dockerHubUsername}/${crudspringbootImageName}"

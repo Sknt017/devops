@@ -10,11 +10,11 @@ def call(){
     pipeline {    
         agent any    
         stages {
-            stage('Checkout') {
-                steps {
-                    git url: "${env.GIT_URL_1}"
-                }
-            }
+            // stage('Checkout') {
+            //     steps {
+            //         git url: "${env.GIT_URL_1}"
+            //     }
+            // }
             stage('Build Application') {
                 steps {
                     sh 'mvn clean package'
